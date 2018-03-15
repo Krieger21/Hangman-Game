@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hangman Game</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></scrip>
+    <script src="https://code.jquery.com/jquery.js"></script>
+  
+</head>
+   
+ <body class="body">
+    
+    <div class="container">
+       <div class="row">
+           <div class="col-md-12">
+               <div id="top">
+                 <header> MIAMI DOLPHINS HANGMAN GAME </header>
+               </div>
+           <div>
+       </div>
+    </div>
+    
+     <h1 id="para"> PRESS ANY KEY TO GET STARTED! </h1>
+     <br>
+     <div class="category">Category:</div>
+     <br>
+     <br>
+     <div class="hints">Hint:</div>
+     <br>
+     <br>
+     <div class="rightGuess">Right Guess: </div>
+     <br>
+     <br>
+     <div class="wrongGuess">Wrong Guess: </div>
+     <br>
+     <br>
+     <div class="underscore"></div>
+     <br>
+     <br>
+     <div class="game"></div>
+     <br>
+     <br>
+     <div class="wins">Wins!</div>
+     
+     
+    <!-- <scrip src = "assets/javascript/game.js" -->
+    </body>
+
+  <script>
+  
+    const word = ["jarvislandry", "cameronwake", "ryantanehill", "kenyandrake", "reshadjones"]
+    const category = [" Wide Reciever", " Defensive End", " Quarterback", " Running Back", " Strong Safety"]
+    const hints = [" Now plays for the worst team in the history of the NFL", " A former Canadian Football League player and now Miami's #1 defensive end", " The Phins QB and about to take the next step", " Took over for Jay Ajayi at running back", " Most underrated strong safety in the NFL"]
+    var wins = 0
+    $(".wins").append(wins)
+    let randomNum = Math.floor(Math.random() * word.length);
+    let rightWord = [];
+    let wrongWord = [];
+    let chosenWord = word[randomNum];
+    let chosenCategory = category[randomNum];
+    $(".category").append(chosenCategory);
+    let chosenHint = hints[randomNum];
+    $(".hints").append(chosenHint);
+    let underScore = [];
+    
+   
+
+    var generateUnderScore = function() {
+      for(i = 0; i < chosenWord.length; i++) {
+        underScore.push('_');
+        
+      }
+      return underScore;
+      
+    }
+    console.log(generateUnderScore())
+    $(".underscore").append(generateUnderScore())
+    
+
+  document.addEventListener('keypress', (event) => {
+    
+    let keyWord = String.fromCharCode(event.keyCode);
+    
+    if(chosenWord.indexOf(keyWord) > -1) {
+      console.log(true);
+      $(".underscore").append(true)
+      rightWord.push(keyWord);
+      
+      underScore[chosenWord.indexOf(keyWord)] = keyWord;
+      
+      if(underScore.join('') === chosenWord) {
+        alert("You Win");
+        
+        if (alert("You Win") === true) {
+          wins++
+        }
+      }
+      
+    }
+
+    else {
+      wrongWord.push(keyWord);
+      console.log(wrongWord);
+    }
+  
+  });
+
+
+    
+
+  
+
+  
+    
+  
+  
+  
+  
+  
+  </script> 
+  
+
+</html>
